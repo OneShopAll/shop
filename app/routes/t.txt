@@ -1,0 +1,6 @@
+1. parent_categories
+2. child_categories
+3. subchild_categories
+4.Brands
+5.Conditions
+6.Materials
