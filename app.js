@@ -7,7 +7,7 @@ import brandRoutes from "./app/routes/brands.routes.js";
 import productConditionRoutes from "./app/routes/condition.routes.js";
 import productRoutes from "./app/routes/product.routes.js";
 //PORT
-const PORT = 4141;
+const PORT = process.env.PORT || 4141;
 //app init
 const app = express();
 
