@@ -37,6 +37,11 @@ app.use(brandRoutes);
 app.use(productConditionRoutes);
 app.use(productRoutes);
 
+//simple route
+app.get("/", (req, res) => {
+  res.send({ status: true, message: "this is something here" });
+});
+
 //listen server
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
