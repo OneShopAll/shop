@@ -16,26 +16,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //connecct to databse
-mongoose.Promise = global.Promise;
-mongoose
-  .connect("mongodb://localhost:27017/furnitureShop", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
-  .then(() => console.log(`Connect to database `))
-  .catch((err) => {
-    console.log(err);
-    process.exit();
-  });
+// mongoose.Promise = global.Promise;
+// mongoose
+//   .connect("mongodb://localhost:27017/furnitureShop", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false,
+//   })
+//   .then(() => console.log(`Connect to database `))
+//   .catch((err) => {
+//     console.log(err);
+//     process.exit();
+//   });
 
 //routes
-app.use(parentCategoryRoutes);
-app.use(childCategoryRoutes);
-app.use(subchildCategoryRoutes);
-app.use(brandRoutes);
-app.use(productConditionRoutes);
-app.use(productRoutes);
+// app.use(parentCategoryRoutes);
+// app.use(childCategoryRoutes);
+// app.use(subchildCategoryRoutes);
+// app.use(brandRoutes);
+// app.use(productConditionRoutes);
+// app.use(productRoutes);
 
 //simple route
 app.get("/", (req, res) => {
