@@ -15,3 +15,20 @@ export const add_brand = async (dataObj) => {
     return false;
   }
 };
+
+//get brand List
+
+export const get_brand_list = async () => {
+  try {
+    let brand_list = await Brand.find({});
+    if (brand_list) {
+      return brand_list;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    if (error) {
+      return false;
+    }
+  }
+};
