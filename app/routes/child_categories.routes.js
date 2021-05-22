@@ -63,14 +63,18 @@ router.get("/v1/child_categories/:parentCategory", (req, res) => {
       if (result.length > 0) {
         res.send({ status: true, message: " List found. ", data: result });
       } else {
-        res.send({ status: false, message: " List not found. ", data: [] });
+        res.send({
+          status: false,
+          message: "Something went wrong. Please try later. ",
+          data: [],
+        });
       }
     })
     .catch((error) => {
       if (error) {
         res.send({
           status: false,
-          message: " something went wrong. Try again ",
+          message: error.msg,
           data: [],
         });
       }
