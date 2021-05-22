@@ -21,6 +21,7 @@ export const add_brand = async (dataObj) => {
 export const get_brand_list = async () => {
   try {
     let brand_list = await Brand.find({});
+    console.log(brand_list);
     if (brand_list) {
       return brand_list;
     } else {

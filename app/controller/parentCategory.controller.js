@@ -15,6 +15,18 @@ export const add_category = async (dataObj) => {
   }
 };
 
+//get all categories
+export const get_all_categories = async () => {
+  try {
+    let categories = await PrarentCategory.find({});
+    if (categories.length > 0) {
+      return categories;
+    } else {
+      return [];
+    }
+  } catch (error) {}
+};
+
 //get category
 export const get_categories = async (categoryId) => {
   try {

@@ -47,3 +47,22 @@ export const get_child_categories = async (paramsObject) => {
     return false;
   }
 };
+
+//get child Categories by parent id
+export const get_child_categories_by_parentId = async (paramsObject) => {
+  console.log(paramsObject);
+  try {
+    let category = await ChildCategory.findOne({
+      parent_category: paramsObject.parentCategory,
+    }).populate("Sub_child_categories");
+    console.log(category);
+    if (category.length > 0) {
+      return category;
+    } else {
+      throw new Error("List Not found.");
+    }
+  } catch (error) {
+    console.log(error);
+    return error.msg;
+  }
+};

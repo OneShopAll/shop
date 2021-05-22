@@ -2,6 +2,7 @@ import express from "express";
 import {
   add_child_category,
   get_child_categories,
+  get_child_categories_by_parentId,
 } from "../controller/child_categories.controller.js";
 
 const router = express.Router();
@@ -51,5 +52,29 @@ router.get(
       });
   }
 );
+
+// get child categories by parent id
+router.get("/v1/child_categories/:parentCategory", (req, res) => {
+  let paramsObject = {
+    parentCategory: req.params.parentCategory,
+  };
+  get_child_categories_by_parentId(paramsObject)
+    .then((result) => {
+      if (result.length > 0) {
+        res.send({ status: true, message: " List found. ", data: result });
+      } else {
+        res.send({ status: false, message: " List not found. ", data: [] });
+      }
+    })
+    .catch((error) => {
+      if (error) {
+        res.send({
+          status: false,
+          message: " something went wrong. Try again ",
+          data: [],
+        });
+      }
+    });
+});
 
 export default router;

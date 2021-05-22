@@ -2,6 +2,7 @@ import express from "express";
 import {
   add_subchild_category,
   get_subchild_category,
+  get_subchild_category_by_parentId,
 } from "../controller/subchild_categories.controller.js";
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.post("/v1/add_subchild_category", (req, res) => {
         res.send({
           status: false,
           message: "something went wrong. Please try again",
-          data: {},
+          data: [],
         });
       }
     })
@@ -24,7 +25,7 @@ router.post("/v1/add_subchild_category", (req, res) => {
       res.send({
         status: false,
         message: "something went wrong. Please try again",
-        data: {},
+        data: [],
       });
     });
 });
@@ -47,7 +48,7 @@ router.get(
           res.send({
             status: false,
             message: "Something went wrong.",
-            data: {},
+            data: [],
           });
         }
       })
@@ -56,11 +57,35 @@ router.get(
           res.send({
             status: false,
             message: "Something went wrong.",
-            data: {},
+            data: [],
           });
         }
       });
   }
 );
+
+// get subchild by its parent category
+router.get("/v1/subhild_category/:parentCategory", (req, res) => {
+  let paramsObj = {
+    parentCategory: req.params.parentCategory,
+  };
+  get_subchild_category_by_parentId(paramsObj)
+    .then((result) => {
+      if (result) {
+        res.send({
+          status: true,
+          message: "Category list found.",
+          data: result,
+        });
+      } else {
+        res.send({ status: false, message: "List not found ", data: [] });
+      }
+    })
+    .catch((error) => {
+      if (error) {
+        res.send({ status: false, message: "List not found ", data: [] });
+      }
+    });
+});
 
 export default router;

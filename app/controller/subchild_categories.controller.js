@@ -51,3 +51,25 @@ export const get_subchild_category = async (paramsObject) => {
     return false;
   }
 };
+
+//get subcchild cat5egory by its parent id
+export const get_subchild_category_by_parentId = async (paramsObject) => {
+  try {
+    let category = await SubChildCategory.findOne({
+      $and: [
+        {
+          parent_category: paramsObject.parentCategory,
+        },
+      ],
+    }).populate("parent_category", { child_category_title: 1, _id: 1 });
+
+    if (category.length > 0) {
+      return category;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};

@@ -30,12 +30,12 @@ router.post("/v1/add_new_brand", (req, res) => {
 router.get("/v1/brand_list", (req, res) => {
   get_brand_list()
     .then((result) => {
-      if (result) {
+      if (result.length > 0) {
         res.send({ status: true, message: "Brand list.", data: result });
       } else {
         res.send({
           status: false,
-          message: "something went wrong. Please try again",
+          message: "Brand List not found.",
           data: {},
         });
       }
