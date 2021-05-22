@@ -8,7 +8,6 @@ export const add_subchild_category = async (dataObj) => {
     let newSubChildCategory = new SubChildCategory(dataObj);
     let savedCategory = await newSubChildCategory.save();
     if (savedCategory) {
-      console.log();
       let update_parent_category = await ChildCategory.findOneAndUpdate(
         { _id: savedCategory.parent_category },
         {
@@ -55,12 +54,8 @@ export const get_subchild_category = async (paramsObject) => {
 //get subcchild cat5egory by its parent id
 export const get_subchild_category_by_parentId = async (paramsObject) => {
   try {
-    let category = await SubChildCategory.findOne({
-      $and: [
-        {
-          parent_category: paramsObject.parentCategory,
-        },
-      ],
+    let category = await SubChildCategory.find({
+      parent_category: paramsObject.parentCategory,
     }).populate("parent_category", { child_category_title: 1, _id: 1 });
 
     if (category.length > 0) {

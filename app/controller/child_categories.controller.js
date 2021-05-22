@@ -52,7 +52,7 @@ export const get_child_categories = async (paramsObject) => {
 export const get_child_categories_by_parentId = async (paramsObject) => {
   console.log(paramsObject);
   try {
-    let category = await ChildCategory.findOne({
+    let category = await ChildCategory.find({
       parent_category: paramsObject.parentCategory,
     }).populate("Sub_child_categories");
     console.log(category);
