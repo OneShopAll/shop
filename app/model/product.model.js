@@ -29,24 +29,20 @@ const productSchema = mongoose.Schema(
     stockSize: { type: Number },
     availableInBulk: { type: Boolean },
     features: {},
-    filterFeatures: {
-      offerPrice: { type: Number },
-      productCondition: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Condition",
-      },
-      ChildCategoryType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "childCategory",
-      },
-      storage: { type: String },
-      bedingHeight: { type: String },
+    productCondition: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Condition",
     },
+    storage: { type: String },
+    bedingHeight: { type: String },
+    dimensions: { type: String },
     discount: { type: Number },
     isUniqueProduct: { type: Boolean },
     deliveryInDays: { type: Number },
     return: { type: Number },
-    warrenty: { type: Number },
+    warranty: { type: String },
+    color: { type: String },
+    material: { type: String },
   },
   {
     collection: "Products",
