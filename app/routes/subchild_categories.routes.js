@@ -65,7 +65,7 @@ router.get(
 );
 
 // get subchild by its parent category
-router.get("/v1/subhild_category/:parentCategory", (req, res) => {
+router.get("/v1/subchild_category/:parentCategory", (req, res) => {
   let paramsObj = {
     parentCategory: req.params.parentCategory,
   };
