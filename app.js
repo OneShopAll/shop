@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import parentCategoryRoutes from "./app/routes/parent_categories.routes.js";
 import childCategoryRoutes from "./app/routes/child_categories.routes.js";
 import subchildCategoryRoutes from "./app/routes/subchild_categories.routes.js";
@@ -16,6 +17,7 @@ const app = express();
 //use middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 //connecct to databse
 mongoose.Promise = global.Promise;
