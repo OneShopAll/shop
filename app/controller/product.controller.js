@@ -46,3 +46,27 @@ export const get_product_by_id = async (productId) => {
     return false;
   }
 };
+
+// get product by child category
+
+export const get_products_by_child_category = async (childCategory) => {
+  try {
+    let products = await Product.find({ childCategoryType: childCategory })
+      .populate("brand", {
+        brand_title: 1,
+      })
+      .populate("parentCategoryType", {
+        category_title: 1,
+      })
+      .populate("productCondition");
+    if (products.length > 0) {
+      return products;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    if (error) {
+      return false;
+    }
+  }
+};
