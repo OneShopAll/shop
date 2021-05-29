@@ -18,7 +18,9 @@ export const add_category = async (dataObj) => {
 //get all categories
 export const get_all_categories = async () => {
   try {
-    let categories = await PrarentCategory.find({});
+    let categories = await PrarentCategory.find({}).populate(
+      "child_categories"
+    );
     if (categories.length > 0) {
       return categories;
     } else {
